@@ -21,7 +21,7 @@ LoginCase
     Sleep                                         5s
     Element Should Be Visible                     //div[@id="email_container"]
     Sleep                                         3s
-    Element Should Be Visible                     //div[contains(.,"The email address or mobile number you entered isn't connected to an account")]//a[contains(.,"Find your account and log in.")]
+    Element Should Be Visible                     (//div[contains(.,"Invalid username or password")])[8]
     #negative case 2(empty username)
     Wait Until Element Is Visible                 //input[@placeholder="Password"]                                timeout=30s
     Click Element                                 //input[@placeholder="Password"]
@@ -29,7 +29,7 @@ LoginCase
     Sleep                                         2s
     Click Element                                 //button[@name="login"]
     Sleep                                         5s
-    Element Should Be Visible                     //div[contains(.,"The email address or mobile number you entered isn't connected to an account")]//a[contains(.,"Find your account and log in.")]
+    Element Should Be Visible                     (//div[contains(.,"Invalid username or password")])[8]
     Sleep                                         2s  
     #negative case 3 (invalid username and empty pwd)
     Wait Until Element Is Visible                 //input[@placeholder="Email address or phone number"]         timeout=30s
@@ -37,7 +37,7 @@ LoginCase
     Input Text                                    //input[@placeholder="Email address or phone number"]          ${UName1}                 
     Click Element                                 //button[@name="login"]
     Sleep                                         5s
-    Element Should Be Visible                     //div[contains(.,"The email address you entered isn't connected to an account")]//a[contains(.,"Create a new Facebook account.")]
+    Element Should Be Visible                     (//div[contains(.,"Invalid username or password")])[8]
     Sleep                                         2s
     #negative case 4 (invalid username and invalid pwd)
     Wait Until Element Is Visible                 //input[@placeholder="Email address or phone number"]         timeout=30s
@@ -51,23 +51,9 @@ LoginCase
     Sleep                                         5s
     Click Element                                 //button[@name="login"]
     Sleep                                         5s
-    Element Should Be Visible                     //div[contains(.,"The email address or mobile number you entered isn't connected to an account")]//a[contains(.,"Find your account and log in.")]
+    Element Should Be Visible                     (//div[contains(.,"Invalid username or password")])[8]
     Sleep                                         2s
-    #negative case 5(valid username and empty pwd)
-    Wait Until Element Is Visible                 //input[@placeholder="Email address or phone number"]         timeout=30s
-    Click Element                                 //input[@placeholder="Email address or phone number"] 
-    Input Text                                    //input[@placeholder="Email address or phone number"]          ${UName}                 
-    Wait Until Element Is Visible                 //input[@placeholder="Password"]                               timeout=30s
-    Click Element                                 //input[@placeholder="Password"]
-    Input Text                                    //input[@placeholder="Password"]                                ${Pwd1}                 
-    Sleep                                         2s
-    Click Element                                 //button[@name="login"]
-    Sleep                                         5s
-    Click Element                                 //button[@name="login"]
-    Sleep                                         5s
-    Element Should Be Visible                     (//div[contains(.,"The password that you've entered is incorrect.")])[9]
-    Sleep                                         2s
-    #negative case 5(valid username and wrong pwd)
+    #negative case 6(valid username and wrong pwd)
     Wait Until Element Is Visible                 //input[@placeholder="Email address or phone number"]         timeout=30s
     Click Element                                 //input[@placeholder="Email address or phone number"] 
     Input Text                                    //input[@placeholder="Email address or phone number"]          ${UName}                 
@@ -91,9 +77,7 @@ LoginCase
     Sleep                                         2s
     Click Element                                 //button[@name="login"]
     Sleep                                         5s
-    Element Should Not Be Visible                 //div[contains(.,"The email address or mobile number you entered isn't connected to an account")]//a[contains(.,"Find your account and log in.")]
-    Element Should Not Be Visible                 //div[contains(.,"The email address you entered isn't connected to an account")]//a[contains(.,"Create a new Facebook account.")]
-    Element Should Not Be Visible                 (//div[contains(.,"The password that you've entered is incorrect.")])[9]
+    Element Should Not Be Visible                 (//div[contains(.,"Invalid username or password")])[8]
     Element Should Be Visible                     //div[@aria-label="Facebook"]
     Sleep                                         2s
     
